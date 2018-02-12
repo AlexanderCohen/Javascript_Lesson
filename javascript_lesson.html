@@ -1,8 +1,74 @@
 <html>
   <head>
     <title>JavaScript Lessons</title>
+    <style>
+      canvas {border: 1px solid black;}
+    </style>
   </head>
   <body>
+
+  <canvas id="canvas" width="300" height="300">
+
+
+
+  </canvas>
+
+
+
+  <script type="text/JavaScript">
+
+  var enemy1 = {
+    x: 50,
+    y: 50,
+    w: 30,
+    h: 20,
+    speed: 1
+
+  };
+
+
+  var x = 10;
+  var y = 10;
+  var w = 20;
+  var h = 30;
+  //speed at which the rectangle moves
+  var speed = 3;
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext("2d");
+
+
+  var update = function() {
+    if (x >= 280){
+      x = 280
+      speed = -speed;
+    }
+    else if (x <= 10) {
+      x = 10
+      speed = -speed
+    };
+    x = x + speed;
+  };
+
+  var draw = function() {
+    ctx.clearRect(0, 0, 300, 300)
+    ctx.fillStyle = '#f41234'
+    ctx.fillRect(x, y, w, h);
+  };
+
+  var step = function(){
+
+    //Update position
+    update();
+    draw();
+    //draws the rectangle on screen.
+
+
+    window.requestAnimationFrame(step)
+  };
+
+  step();
+  </script>
+
 
   </body>
 </html>
